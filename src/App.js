@@ -1,28 +1,37 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import DocumentTitle from 'react-document-title';
+import { ThemePicker } from './components/widget/index'
+import SiderCustom from './components/suder-custom.jsx';
+import { Layout } from 'antd';
+
+const { Content, Footer } = Layout;
 
 class App extends Component {
+  state = {
+    title: '',
+    collapsed: false
+  };
+  componentWillMount() {
+  //
+  };
   render() {
+    const { title } = this.state;
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      <DocumentTitle title={title}>
+        <Layout>
+          <SiderCustom />
+          <ThemePicker />
+          <Layout style={{flexDirection: 'column'}}>
+            <Content>
+              content
+            </Content>
+            <Footer style={{ textAlign: 'center'}}>
+            {new Date().getFullYear()} React-学习计划  created by fenpeng
+            </Footer>
+          </Layout>
+        </Layout>
+      </DocumentTitle>
+    )
   }
 }
-
-export default App;
+export default App
